@@ -1,0 +1,145 @@
+/* Fonts */
+
+@font-face {
+    font-family: jost-book;
+    src: url('../fonts/book.ttf');
+}
+
+@font-face {
+    font-family: jost-thin;
+    src: url('../fonts/thin.ttf');
+}
+
+@font-face {
+    font-family: jost-medium;
+    src: url('../fonts/medium.ttf');
+}
+
+@font-face {
+    font-family: jost-bold;
+    src: url('../fonts/bold.ttf');
+}
+
+@font-face {
+    font-family: jost-light;
+    src: url('../fonts/light.ttf');
+}
+
+@font-face {
+    font-family: jost-heavy;
+    src: url('../fonts/heavy.ttf');
+}
+
+@font-face {
+    font-family: jost-black;
+    src: url('../fonts/black.ttf');
+}
+
+/* Style Reset */
+
+body, html, div {
+    margin: 0;
+    padding: 0;
+    font-family: jost-book;
+    color: #F9F7F0;
+}
+
+body {
+    background-image: url('../images/backgrounds/01.jpg');
+    background-size: cover;
+}
+
+hr {
+    margin: 2px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: none;
+    color: inherit;
+    text-shadow: 0px 0px 3px #FFFFFF;
+}
+
+/* Structure */
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    background-color: #1b7340f3;
+}
+
+#footer {
+    font-family: jost-medium;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.442);
+    padding: 0.5em;
+}
+
+#footer a {
+    font-weight: normal;
+}
+/* Interface Elements */
+
+.logo {
+    margin-top: 1em;
+    width: 200px;
+    height: auto;
+}
+
+.title {
+    width: 100%;
+    padding-top: 10px;
+    text-align: center;
+    font-family: jost-bold;
+    font-size: 1.5em;
+}
+
+.divider {
+    background-color: #F9F7F0;
+}
+
+.welcome {
+    margin: 1em 2em 0em;
+}
+
+.welcome ul {
+    margin: 1em 2em;
+}
+
+.welcome div.container.container-fluid {
+    margin-top: 3em;
+    text-align: center;
+}
+
+#login-button {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    background-color: #90D3ED;
+    color: #F9F7F0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#login-button:hover {
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+    background-color: #86cde9;
+    text-shadow: 0px 0px 3px #FFFFFF;
+}
