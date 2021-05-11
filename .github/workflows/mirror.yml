@@ -1,15 +1,15 @@
-name: GitLab Mirror
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+name: Gitlab Mirror
+
+on: [push, delete]
+
 jobs:
-  build:
+  gitlab:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: spyoungtech/mirror-action@master
-        with:
-          REMOTE: 'https://git.fridaysforfutu.re/messenger-ag/ctf-tool-frontend.git'
-          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+    - uses: actions/checkout@v1
+    - uses: pixta-dev/repository-mirroring-action@v1
+      with:
+        target_repo_url:
+          git@git.fridaysforfutu.re:messenger-ag/ctf-tool-frontend.git
+        ssh_private_key:
+          ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
