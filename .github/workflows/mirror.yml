@@ -1,0 +1,15 @@
+name: GitLab Mirror
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: spyoungtech/mirror-action@master
+          with:
+            REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
+            GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+            GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
