@@ -14,55 +14,62 @@
     <!-- Development Version, change in production! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="//unpkg.com/navigo"></script>
+
+    <script src="https://github.com/IdentityModel/oidc-client-js/blob/dev/dist/oidc-client.min.js"></script>
 </head>
 
 <body>
     <div id="toast">Test</div>
-    <div class="wrapper">
-        <div id="app" class="container-lg h-75">
-            <div v-bind:style="showWelcome">
-                <img src="./assets/images/fridaysforfuture.png" class="rounded mx-auto d-block logo">
-                <div class="title">Messenger4Future</div>
-                <hr class="divider">
-                <div class="welcome">
-                    <b>Willkommen Aktivist:in</b>,<br />
-                    du befindest dich hier auf einer Website von Fridays for Future, mit der die <a
-                        href="https://fridaysforfuture.info/lexikon/ctf/" target="_blank">Communication Task Force</a>
-                    und andere Gruppen Informationen unter den Whatsapp- und Matrixgruppen zu verteilen. <br><br>
-                    <ul>
-                        <li>
-                            <b>Du suchst nach Informationen?</b><br>
-                            <span>Dann bist du hier leider falsch. Diese Website ist nur zum Senden der Nachrichten
-                                gedacht.
-                                Schaue in den entsprechenden Gruppen nach.</span>
-                        </li>
-                        <li>
-                            <b>Du möchtest eine Nachricht senden?</b><br>
-                            <span>Sobald du dich angemeldet hast kannst du Nachrichten verfassen.</span>
-                        </li>
-                        <li>
-                            <b>Fehler in einer Nachricht?</b><br>
-                            <span>Nachrichten können leider nicht wiederrufen werden, vielleicht wird das aber noch
-                                implementiert.</span>
-                        </li>
-                        <li>
-                            <b>Bug gefunden?</b><br>
-                            <span>Bitte melde Bugs hier: PLACEHOLDER</span>
-                        </li>
-                    </ul>
+    <div id="app" class="container">
+        <div v-bind:style="showWelcome">
+            <img src="./assets/images/fridaysforfuture.png" class="rounded mx-auto d-block logo">
+            <div class="title">Messenger4Future</div>
+            <hr class="divider">
+            <div class="welcome">
+                <b>Willkommen Aktivist:in</b>,<br />
+                du befindest dich hier auf einer Website von Fridays for Future, mit der die <a
+                    href="https://fridaysforfuture.info/lexikon/ctf/" target="_blank">Communication Task Force</a>
+                und andere Gruppen Informationen unter den Whatsapp- und Matrixgruppen zu verteilen. <br><br>
+                <ul>
+                    <li>
+                        <b>Du suchst nach Informationen?</b><br>
+                        <span>Dann bist du hier leider falsch. Diese Website ist nur zum Senden der Nachrichten
+                            gedacht.
+                            Schaue in den entsprechenden Gruppen nach.</span>
+                    </li>
+                    <li>
+                        <b>Du möchtest eine Nachricht senden?</b><br>
+                        <span>Sobald du dich angemeldet hast kannst du Nachrichten verfassen.</span>
+                    </li>
+                    <li>
+                        <b>Fehler in einer Nachricht?</b><br>
+                        <span>Nachrichten können leider nicht wiederrufen werden, vielleicht wird das aber noch
+                            implementiert.</span>
+                    </li>
+                    <li>
+                        <b>Bug gefunden?</b><br>
+                        <span>Bitte melde Bugs hier: PLACEHOLDER</span>
+                    </li>
+                </ul>
 
-                    <div class="container container-fluid">
-                        <button id="login-button" class="btn">Anmelden</button>
-                    </div>
+                <div class="container container-fluid">
+                    <button id="login-button" class="btn">Anmelden</button>
                 </div>
             </div>
         </div>
     </div>
     <div id="footer">
-        <span>Entwickelt mit ❤ von der Bot UG Fridays for Future</span> |
-        <a href="...">Impressum</a> |
-        <a href="...">Kontakt</a> |
-        <a href="/logout" data-navigo>Logout</a>
+        <div class="small"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+            </svg></div>
+        <div class="expanded" style="display: none;">
+            <span>Entwickelt mit ❤ von der Bot UG Fridays for Future</span> |
+            <a href="...">Impressum</a> |
+            <a href="...">Kontakt</a> |
+            <a href="/logout" data-navigo>Logout</a>
+        </div>
     </div>
 
     <script src="assets/js/variables.js"></script>

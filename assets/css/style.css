@@ -41,11 +41,11 @@ body, html, div {
     margin: 0;
     padding: 0;
     font-family: jost-book;
-    color: #F9F7F0;
 }
 
 body {
     background-image: url('../images/backgrounds/01.jpg');
+    background-attachment: fixed;
     background-size: cover;
 }
 
@@ -66,32 +66,59 @@ a:hover {
     text-shadow: 0px 0px 3px #FFFFFF;
 }
 
-/* Structure */
-
-.wrapper {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+button.btn {
+    padding: 5px;
+    background-color: #1DA64A;
+    color: #F9F7F0;
+    border-radius: 0;
+    box-shadow: 6px 6px 0px -1px #1B7340;
+    -webkit-box-shadow: 6px 6px 0px -1px #1B7340;
+    -moz-box-shadow: 6px 6px 0px -1px #1B7340;
 }
 
+button.btn:hover {
+    transition: 0.2s;
+    background-color: #86cde9;
+    color: #F9F7F0;
+}
+
+button.btn:focus {
+    transition: 0.2s;
+    background-color: #86cde9;
+    color: #F9F7F0;
+    outline: none;
+}
+
+/* Structure */
+
 #app {
-    background-color: #1b7340f3;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    background-color: white;
+    color: black;
+    padding: 2.5em;
+    min-height: 80vh;
 }
 
 #footer {
     font-family: jost-medium;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 0;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.442);
     padding: 0.5em;
+    color: #F9F7F0;
+}
+
+#footer:hover {
+    width: 100%;
 }
 
 #footer a {
     font-weight: normal;
 }
+
 /* Interface Elements */
 
 .logo {
@@ -109,7 +136,7 @@ a:hover {
 }
 
 .divider {
-    background-color: #F9F7F0;
+    background-color: black;
 }
 
 .welcome {
@@ -129,17 +156,6 @@ a:hover {
     width: 75%;
     margin-left: auto;
     margin-right: auto;
-    padding: 5px;
-    background-color: #90D3ED;
-    color: #F9F7F0;
     text-transform: uppercase;
     font-weight: bold;
-}
-
-#login-button:hover {
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: 0.3s;
-    background-color: #86cde9;
-    text-shadow: 0px 0px 3px #FFFFFF;
 }
