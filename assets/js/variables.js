@@ -1,3 +1,3 @@
 let app
-let auth = true
+let auth = false
 let router
