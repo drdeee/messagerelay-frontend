@@ -3,6 +3,10 @@ window.addEventListener('load', () => {
     router.on('/logout', () => {
         app.auth = false
 
-        showToast("Erfolgreich abgemeldet.")
+        showToast("Erfolgreich abgemeldet.", () => {
+            setTimeout(() => {
+                router.navigate('/')
+            }, 1000)
+        })
     })
 })

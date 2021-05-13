@@ -1,28 +1,32 @@
-// Footer 
-
-const footer = document.querySelector('#footer')
-const smallFooter = document.querySelector('#footer div.small')
-const expandedFooter = document.querySelector('#footer div.expanded')
-
-footer.addEventListener('mouseover', () => {
-    smallFooter.style.display = 'none'
-    expandedFooter.style.display = 'block'
-})
-
-footer.addEventListener('mouseout', () => {
-    smallFooter.style.display = 'block'
-    expandedFooter.style.display = 'none'
-})
-
-// APP
 app = new Vue({
     el: '#app',
     data: {
-        auth
-    },
-    computed: {
-        showWelcome: function(){
-            return 'display: ' + (this.auth ? 'none' : 'block') + ';'
+        name: 'MessageRelay',
+        support: 'https://google.de',
+        currentView: 'overview',
+        auth,
+        user: {
+            name: 'Elias Bistry',
+            image: 'https://cdn.discordapp.com/icons/691691563805573121/96e07b5812cd4c8c3df858adb0a9f236.png',
+            permissions: {
+                sendMessages: true,
+                viewArchieve: true,
+                manageUsers: true,
+                manageCategories: true
+            }
         }
-    }
+    },
+    methods:  {
+        login: function(){
+            this.auth = true
+            this.currentView = 'overview'
+            router.navigate('/app/overview')
+
+        },
+        logout: function(){
+            router.navigate('/logout')
+        }
+    },
+
+
 })

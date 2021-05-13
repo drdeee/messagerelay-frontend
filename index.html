@@ -19,11 +19,11 @@
 </head>
 
 <body>
-    <div id="toast">Test</div>
+    <div id="toast"></div>
     <div id="app" class="container">
-        <div v-bind:style="showWelcome">
+        <div v-if="!auth">
             <img src="./assets/images/fridaysforfuture.png" class="rounded mx-auto d-block logo">
-            <div class="title">Messenger4Future</div>
+            <div class="title">{{ name }}</div>
             <hr class="divider">
             <div class="welcome">
                 <b>Willkommen Aktivist:in</b>,<br />
@@ -48,12 +48,36 @@
                     </li>
                     <li>
                         <b>Bug gefunden?</b><br>
-                        <span>Bitte melde Bugs hier: PLACEHOLDER</span>
+                        <span>Bitte melde Bugs hier: <a target="_blank" v-bind:href="support">zum Support</a></span>
                     </li>
                 </ul>
 
                 <div class="container container-fluid">
-                    <button id="login-button" class="btn">Anmelden</button>
+                    <button id="login-button" class="btn" v-on:click="login">Anmelden</button>
+                </div>
+            </div>
+        </div>
+        <div v-if="auth">
+            <div class="w-100 app-header">
+                <div class="user">
+                    <image v-bind:src="user.image" class="avatar"></image>
+                    <span>Willkommen, <b>{{ user.name }}</b></span>
+                </div><button class="btn" v-on:click="logout">Logout</button>
+            </div>
+            <div>
+                <div class="app-overview" v-if="currentView === 'overview'">
+                    Dies ist die Übersicht des MessageRelays. Von hier gelangst du überall hin, wo du hinkommen willst,
+                    vorausgesetzt du hast ausreichend Rechte.
+                    <div class="overview-container d-grid gap-2 col-6 mx-auto">
+                        <button class="btn" v-bind:disabled="!user.permissions.sendMessages">Neue Nachricht</button>
+                        <button class="btn" v-bind:disabled="!user.permissions.viewArchieve">Nachrichtenarchiev</button>
+                        <button class="btn" v-bind:disabled="!user.permissions.manageUsers">Benutzer
+                            verwalten</button>
+                        <button class="btn" v-bind:disabled="!user.permissions.manageCategories">Kategorien
+                            verwalten</button>
+                    </div>
+                    Wenn du denkst, dass dir bestimmte Berechtigungen fehlen, melde dich bitte beim <a target="_blank"
+                        v-bind:href="support">Support</a>.
                 </div>
             </div>
         </div>
@@ -67,13 +91,13 @@
         <div class="expanded" style="display: none;">
             <span>Entwickelt mit ❤ von der Bot UG Fridays for Future</span> |
             <a href="...">Impressum</a> |
-            <a href="...">Kontakt</a> |
-            <a href="/logout" data-navigo>Logout</a>
+            <a href="...">Kontakt</a>
         </div>
     </div>
 
     <script src="assets/js/variables.js"></script>
     <script src="assets/js/utils.js"></script>
+    <script src="assets/js/ui.js"></script>
     <script src="assets/js/router.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
