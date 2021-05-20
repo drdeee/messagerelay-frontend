@@ -7,15 +7,23 @@
 
     <title>Messenger4Future</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/snackbar.css" rel="stylesheet">
+
+    <!-- Vue.js -->
     <!-- Development Version, change in production! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Navigo -->
     <script src="//unpkg.com/navigo"></script>
 
-    <script src="https://github.com/IdentityModel/oidc-client-js/blob/dev/dist/oidc-client.min.js"></script>
+    <!-- Quill -->
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
+    <!-- Own Styles-->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/snackbar.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,25 +68,83 @@
         <div v-if="auth">
             <div class="w-100 app-header">
                 <div class="user">
-                    <image v-bind:src="user.image" class="avatar"></image>
                     <span>Willkommen, <b>{{ user.name }}</b></span>
-                </div><button class="btn" v-on:click="logout">Logout</button>
+                </div>
+                <b class="currentViewDisplay">{{ currentViewDisplay }}</b>
+                <div>
+                    <button class="btn" v-on:click="logout">Logout</button>
+                </div>
             </div>
             <div>
                 <div class="app-overview" v-if="currentView === 'overview'">
-                    Dies ist die Übersicht des MessageRelays. Von hier gelangst du überall hin, wo du hinkommen willst,
-                    vorausgesetzt du hast ausreichend Rechte.
-                    <div class="overview-container d-grid gap-2 col-6 mx-auto">
-                        <button class="btn" v-bind:disabled="!user.permissions.sendMessages">Neue Nachricht</button>
-                        <button class="btn" v-bind:disabled="!user.permissions.viewArchieve">Nachrichtenarchiev</button>
-                        <button class="btn" v-bind:disabled="!user.permissions.manageUsers">Benutzer
-                            verwalten</button>
-                        <button class="btn" v-bind:disabled="!user.permissions.manageCategories">Kategorien
-                            verwalten</button>
+                    Dies ist die Übersicht des MessageRelays. Hier findest du alle Relays (Gruppen), auf die du
+                    mindestens Leseberechtigung hast. Um Nachrichten zu senden oder zu lesen musst du auf das
+                    entsprechende Relay
+                    gehen.
+                    <div class="relays">
+                        <a class="relay" v-for="relay in relays" v-on:click="goToRelayOverview(relay.id)">
+                            {{ relay.name }}
+                        </a>
                     </div>
-                    Wenn du denkst, dass dir bestimmte Berechtigungen fehlen, melde dich bitte beim <a target="_blank"
-                        v-bind:href="support">Support</a>.
                 </div>
+                <div class="app-send-message" v-if="currentView === 'sendmessage'">
+                    <b>Inhalt</b><br><br>
+                    <div v-if="currentView === 'sendmessage'" id="editor"></div>
+                </div>
+                <div class="app-relay-overview" v-if="currentView === 'relay'">
+                    Relay-Name: <b>{{ currentRelay.name }}</b><br>
+                    Relay-ID: <b>{{ currentRelay.id }}</b><br><br>
+                    <i>Wenn hier Knöpfe deaktiviert sind heißt das, dass du nicht die benötigten Rechte für die Aktionen
+                        hast. Wenn du denkst dies ist ein Fehler, melde dich bitte (1) bei einem Relay-Admin oder (2)
+                        beim <a v-bind:href="support" target="_blank">Support</a>.</i><br><br>
+
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn">Nachrichten lesen</button>
+                        <button class="btn" v-bind:disabled="!currentRelay.canSend">Neue Nachricht</button>
+                        <button class="btn" v-bind:disabled="!currentRelay.canManage">Endpunkte verwalten</button>
+                        <button class="btn" v-bind:disabled="!currentRelay.canManage">Nutzer verwalten</button>
+                    </div>
+                </div>
+                <div class="app-relay-messages" v-if="currentView === 'relayMsgs'">
+                    Relay-Name: <b>{{ currentRelay.name }}</b><br>
+                    Relay-ID: <b>{{ currentRelay.id }}</b><br><br>
+
+                    <div class="messages">
+                        <div class="message card" v-for="message in currentRelay.messages">
+                            <div class="input-group">
+                                <div class="input-group-text" v-bind:id="message.id">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Author" aria-label="Author"
+                                    v-bind:aria-describedby="message.id" disabled v-bind:value="message.author">
+                                <div class="input-group-text" v-bind:id="message.time">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-clock-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Uhrzeit" aria-label="Uhrzeit"
+                                    v-bind:aria-describedby="message.time" disabled v-bind:value="message.time">
+
+                            </div>
+                            <div class="message-content" v-html="message.content"></div>
+                            <!--
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary me-md-2" type="button">Button</button>
+                                <button class="btn btn-primary" type="button">Button</button>
+                              </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="currentView !== 'overview'" class="back">
+                <a href="/app/overview" v-on:click="goBack($event)">&#11160; Zurück zur Übersicht</a>
             </div>
         </div>
     </div>
@@ -95,11 +161,16 @@
         </div>
     </div>
 
+    <!-- Quill library-->
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+    <!-- Own Scripts-->
     <script src="assets/js/variables.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/ui.js"></script>
-    <script src="assets/js/router.js"></script>
+    <script src="assets/js/editor.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/router.js"></script>
 </body>
 
 </html>

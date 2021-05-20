@@ -89,6 +89,18 @@ button.btn:focus {
     outline: none;
 }
 
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
 /* Structure */
 
 #app {
@@ -98,13 +110,17 @@ button.btn:focus {
     color: black;
     padding: 2.5em;
     min-height: 80vh;
+    overflow-y: auto;
+}
+
+@media screen and (min-width: 480px) {
+    #app {
+        height: 80vh;
+    }
 }
 
 #footer {
     font-family: jost-medium;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.442);
     padding: 0.5em;
@@ -164,7 +180,6 @@ button.btn:focus {
 
 div.app-header {
     display: flex;
-    position: relative;
     justify-content: space-between;
     margin-bottom: 0.7em;
 }
@@ -181,29 +196,69 @@ div.app-header div.user {
     }
 }
 
-.avatar {
-    width: 30px;
-    border-radius: 500em;
-    margin-right: 1em;
+@media screen and (max-width: 480px) {
+    div.app-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    div.app-header div.user {
+        display: none;
+    }
+    div.app-header button {
+        width: 100%;
+    }
+}
+
+div.app-header .currentViewDisplay {
+    font-size: 22px;
+}
+
+/* App - Link Back */
+
+.back {
+    margin-top: 2em;
+    text-align: center;
 }
 
 /* App - Overview */
 
-.overview-container {
-    margin-top: 3em;
+.relays {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.overview-container div {
+.relays a.relay {
+    display: inline-block;
+    background-color: #1DA64A;
+    box-shadow: 6px 6px 0px -1px #1B7340;
+    -webkit-box-shadow: 6px 6px 0px -1px #1B7340;
+    -moz-box-shadow: 6px 6px 0px -1px #1B7340;
+    min-width: 200px;
+    min-height: 50px;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.relays a.relay:hover {
+    text-shadow: none;
+    background-color: #86cde9;
+}
+
+/* App - Relay Messages */
+
+.app-relay-messages .messages .message {
+  margin-top: 1em;
+}
+
+.app-relay-messages .messages .message .message-content {
     padding: 1em;
 }
 
-.overview-container button {
-    display: block;
-    box-shadow: none;
-    margin-bottom: 7px;
-}
+/* App - Send Messages */
 
-.overview-container button:last-of-type {
-    margin-bottom: 40px;
+#toolbar {
+    margin-top: 1em;
 }
