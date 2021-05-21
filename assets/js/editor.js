@@ -13,7 +13,8 @@ class EditorManager {
 
         this._editor = new Quill(div, {
             theme: 'snow',
-            scrollingContainer: '#app'
+            placeholder: 'Deine Nachricht...'
+            //scrollingContainer: '#app'
         });
 
     }
@@ -29,6 +30,12 @@ class EditorManager {
         if(document.getElementsByClassName('ql-editor').length == 1){
             return document.getElementsByClassName('ql-editor')[0].innerHTML
         } else return ''
+    }
+
+    setContent(html){
+        if(document.getElementsByClassName('ql-editor').length == 1){
+            document.getElementsByClassName('ql-editor')[0].innerHTML = html
+        }
     }
 }
 

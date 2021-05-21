@@ -44,7 +44,7 @@ body, html, div {
 }
 
 body {
-    background-image: url('../images/backgrounds/01.jpg');
+    background-image: url('../images/backgrounds/06.jpg');
     background-attachment: fixed;
     background-size: cover;
 }
@@ -250,15 +250,51 @@ div.app-header .currentViewDisplay {
 /* App - Relay Messages */
 
 .app-relay-messages .messages .message {
-  margin-top: 1em;
+    margin-top: 1em;
 }
 
 .app-relay-messages .messages .message .message-content {
     padding: 1em;
 }
 
+.message button {
+    box-shadow: none;
+    border-radius: 3px;
+    padding: 0px;
+}
+
+.message button:hover{
+    background-color: #1B7340;
+}
+
+.message button.delete {
+    background-color: rgb(222 0 0);
+}
+
+.message button.delete:hover {
+    background-color: rgb(190 0 0);
+}
+
+.message svg {
+    margin: 5px;
+    height: 15px;
+    width: 15px;
+}
+
+.message .message-header {
+    padding: 4px;
+}
+
 /* App - Send Messages */
 
-#toolbar {
-    margin-top: 1em;
+.sendmessage {
+    padding-top: 1em;
+}
+
+#editor {
+    margin: 1em;
+}
+
+.msg-submit:last-of-type{
+    margin-top: 8px;
 }
