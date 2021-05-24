@@ -3,7 +3,7 @@ app = new Vue({
     data: {
         name: 'MessageRelay',
         support: 'https://google.de',
-        currentView: 'relayMsgs',
+        currentView: 'relayEndpoints',
         auth,
         user: {
             name: 'Elias Bistry',

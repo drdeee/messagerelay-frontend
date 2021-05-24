@@ -298,3 +298,11 @@ div.app-header .currentViewDisplay {
 .msg-submit:last-of-type{
     margin-top: 8px;
 }
+
+/* App - Endpoints */
+.endpoint {
+    margin-bottom: 5px;
+}
+.endpoint:hover {
+    opacity: 0.85;
+}

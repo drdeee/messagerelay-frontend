@@ -71,4 +71,8 @@ window.addEventListener('load', () => {
     router.on('/app/relay/:id/messages', () => {
         app.currentView = 'relayMsgs'
     })
+
+    router.on('/app/relay/:id/endpoints', () => {
+        app.currentView = 'relayEndpoints'
+    })
 })

@@ -15,6 +15,10 @@
     <!-- Development Version, change in production! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
+    <!-- Vue components -->
+    <script src="assets/components/MessengerIcon.js"></script>
+    <script src="assets/components/PublishIcon.js"></script>
+
     <!-- Navigo -->
     <script src="//unpkg.com/navigo"></script>
 
@@ -147,18 +151,7 @@
                                 <input type="text" class="form-control" placeholder="Uhrzeit" aria-label="Uhrzeit"
                                     v-bind:aria-describedby="message.time" disabled v-bind:value="message.time">
                                 <div class="input-group-text">
-                                    <svg v-if="message.isPublished" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path
-                                            d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
-                                        <path
-                                            d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
-                                    </svg>
-                                    <svg v-if="!message.isPublished" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    </svg>
+                                    <publish-icon v-bind:published="message.isPublished">
                                 </div>
                             </div>
                             <div class="message-content" v-html="message.content"></div>
@@ -178,6 +171,21 @@
                                     </svg></button>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="app-relay-endpoints" v-if="currentView === 'relayEndpoints'">
+                    Relay-Name: <b>{{ currentRelay.name }}</b><br>
+                    Relay-ID: <b>{{ currentRelay.id }}</b><br><br>
+                    Hier findest du alle "Endpoints" - die Kanäle, an die Nachrichten gesendet werden - des Relays. Außerdem kannst du hier neue hinzufügen.<br><br>
+                    <button class="btn">Neu</button>
+                    <div class="endpoints">
+                        <div class="input-group endpoint">
+                            <div class="input-group-text input">
+                                <messenger-icon type="discord"></messenger-icon>
+                            </div>
+                            <input type="text" class="form-control input" disabled v-bind:value="'Telegram Main Group'">
+                            <input type="text" class="form-control input" disabled v-bind:value="'+0382632133123'">
                         </div>
                     </div>
                 </div>
