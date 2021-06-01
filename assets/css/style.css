@@ -101,6 +101,16 @@ button.btn:focus {
     background: #888;
 }
 
+.modal button.btn {
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
+.modal button.btn:hover {
+    background: none;
+}
+
 /* Structure */
 
 #app {
@@ -263,7 +273,7 @@ div.app-header .currentViewDisplay {
     padding: 0px;
 }
 
-.message button:hover{
+.message button:hover {
     background-color: #1B7340;
 }
 
@@ -295,14 +305,64 @@ div.app-header .currentViewDisplay {
     margin: 1em;
 }
 
-.msg-submit:last-of-type{
+.msg-submit:last-of-type {
     margin-top: 8px;
 }
 
 /* App - Endpoints */
+
 .endpoint {
     margin-bottom: 5px;
 }
+
 .endpoint:hover {
     opacity: 0.85;
+}
+
+.descriptionAndNewButton {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+button.btn.new {
+    box-shadow: none;
+    border-radius: 0px;
+    padding: 3px;
+    background: none;
+}
+
+button.btn.new:hover {
+    background: none;
+}
+
+button.btn.new svg {
+    color: #1DA64A;
+}
+
+button.btn.new svg:hover {
+    transition: 0.5s;
+    color: #1B7340;
+}
+
+.modal button svg {
+    width: 20px;
+    height: 20px;
+    color: #1DA64A;
+}
+
+.modal button svg:hover {
+    transition: 0.5s;
+    color: #1B7340;
+}
+
+.modal button svg.dismiss {
+    width: 20px;
+    height: 20px;
+    color: #f5333f;
+}
+
+.modal button svg.dismiss:hover {
+    transition: 0.5s;
+    color: #da121f;
 }

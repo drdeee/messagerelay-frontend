@@ -14,6 +14,11 @@ app = new Vue({
                 manageCategories: true
             }
         },
+        endpointTypes: [
+            'Matrix',
+            'WhatsApp',
+            'Telegram'
+        ],
         relays: [
             {
                 id: 'ihdiashdiasd-asdiadiashdi-asdhaisdhiasd',
@@ -79,6 +84,9 @@ app = new Vue({
         },
         currentAction: {
             data: {}
+        },
+        setupEndpoint: {
+            ready: false
         }
     },
     methods: {
