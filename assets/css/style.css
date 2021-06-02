@@ -111,6 +111,22 @@ button.btn:focus {
     background: none;
 }
 
+.modal button.btn.normal {
+    padding: 5px;
+    background-color: #1DA64A;
+    color: #F9F7F0;
+    border-radius: 0;
+    box-shadow: 6px 6px 0px -1px #1B7340;
+    -webkit-box-shadow: 6px 6px 0px -1px #1B7340;
+    -moz-box-shadow: 6px 6px 0px -1px #1B7340;
+}
+
+.modal button.btn.normal:hover {
+    transition: 0.2s;
+    background-color: #86cde9;
+    color: #F9F7F0;
+}
+
 /* Structure */
 
 #app {
@@ -365,4 +381,8 @@ button.btn.new svg:hover {
 .modal button svg.dismiss:hover {
     transition: 0.5s;
     color: #da121f;
+}
+
+.modal .infos div {
+    margin-bottom: 5px;
 }
