@@ -1,0 +1,34 @@
+@font-face {
+    font-family: jost-book;
+    src: url('~/assets/fonts/book.ttf');
+}
+
+@font-face {
+    font-family: jost-thin;
+    src: url('~/assets/fonts/thin.ttf');
+}
+
+@font-face {
+    font-family: jost-medium;
+    src: url('~/assets/fonts/medium.ttf');
+}
+
+@font-face {
+    font-family: jost-bold;
+    src: url('~/assets/fonts/bold.ttf');
+}
+
+@font-face {
+    font-family: jost-light;
+    src: url('~/assets/fonts/light.ttf');
+}
+
+@font-face {
+    font-family: jost-heavy;
+    src: url('~/assets/fonts/heavy.ttf');
+}
+
+@font-face {
+    font-family: jost-black;
+    src: url('~/assets/fonts/black.ttf');
+}

@@ -1,0 +1,10 @@
+body {
+    background: url('~/assets/img/background.svg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 120% 20%;
+    background-size: 120%;
+    background-color: #1b7340;
+    margin: 0;
+    padding: 0;
+}
