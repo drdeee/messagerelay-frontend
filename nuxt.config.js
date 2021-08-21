@@ -61,7 +61,7 @@ export default {
         },
     },
     axios: {
-        baseURL: 'http://localhost:8080'
+        baseURL: 'http://localhost/api/v1/'
     },
 
     router: {

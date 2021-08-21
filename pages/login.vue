@@ -120,5 +120,9 @@
 <script>
 export default {
   layout: "login",
+  middleware: (ctx) => {
+    if(ctx.$auth.loggedIn)
+      return ctx.redirect('/')
+  }
 };
 </script>

@@ -3,10 +3,9 @@
     <div class="w-100 app-header">
       <span class="user"
         >Willkommen,
-        <b>{{ $auth.user.name | $auth.user.preferred_username }}</b></span
-      >
+        <b>{{displayName}}</b></span>
       <b class="site-name">{{ siteName }}</b>
-      <button class="btn" v-on:click="$auth.logout()">Logout</button>
+      <button class="btn" @click="logout()">Logout</button>
     </div>
     <hr />
   </div>
@@ -40,5 +39,18 @@
 <script>
 export default {
   props: ["siteName"],
+  methods: {
+    logout: function(){
+      this.$auth.logout()
+      this.$router.push('/login')
+    }
+  },
+  computed: {
+    displayName: function () {
+      if(this.$auth.user.name)
+        return this.$auth.user.name
+      return this.$auth.user.preferred_username
+    }
+  }
 };
 </script>
