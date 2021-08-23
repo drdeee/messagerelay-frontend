@@ -40,6 +40,10 @@ export default {
     ],
 
     auth: {
+        redirects: {
+            callback: '/',
+            logout: '/login'
+        },
         strategies: {
             local: false,
             cloud: {
@@ -59,6 +63,9 @@ export default {
                 codeChallengeMethod: 'plain',
             },
         },
+        plugins: [
+            '~/plugins/fetchUser.js'
+        ]
     },
     axios: {
         baseURL: 'http://localhost/api/v1/'

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="showPage">
     <img
       src="~/assets/img/fridaysforfuture.png"
       class="rounded mx-auto d-block logo"
@@ -56,6 +56,11 @@
           Anmelden
         </button>
       </div>
+    </div>
+  </div>
+  <div v-else class="center pt-5">
+    <div class="spinner-border text-secondary" style="height: 5rem; width: 5rem" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 </template>
@@ -115,14 +120,28 @@
     width: 100%;
   }
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+}
 </style>
 
 <script>
 export default {
   layout: "login",
+  data: () => {
+    return {
+      showPage: false,
+    };
+  },
+  mounted: function () {
+    setTimeout(() => {
+      this.showPage = true;
+    }, 500);
+  },
   middleware: (ctx) => {
-    if(ctx.$auth.loggedIn)
-      return ctx.redirect('/')
-  }
+    if (ctx.$auth.loggedIn) return ctx.redirect("/");
+  },
 };
 </script>
