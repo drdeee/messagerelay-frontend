@@ -1,14 +1,23 @@
 <template>
   <div>
     <Header site-name="Relay erstellen" />
-    <div v-if="$auth.user.isSuperAdmin" class="card p-4 h-100">
+    <div
+      v-if="$auth.user.isSuperAdmin"
+      class="card p-4 h-100 form-class m-auto"
+    >
+      <div class="text-center">
+        <NuxtLink to="/" class="text-reset fw-light fs-6 text-decoration-none"
+          >&#9666; Zurück zur Übersicht</NuxtLink
+        >
+        <hr class="mt-1" />
+      </div>
       <div class="mb-3">
-        <label for="relayName" class="form-label">Email address</label>
         <input
-          type="email"
+          placeholder="Relay-Name"
+          type="text"
           class="form-control"
-          id="relayName"
           aria-describedby="relayNameHelp"
+          v-model="name"
         />
         <div id="relayNameHelp" class="form-text">
           Der Anzeigename des neuen Relays. Dieser wird in der Übersicht der
@@ -16,25 +25,37 @@
         </div>
       </div>
       <div class="mb-3">
-        <UserPicker v-bind:users="users" />
+        <UserSelector v-model="user"></UserSelector>
+        <div class="form-text">
+          Wähle hier einen User aus, der für dieses Relay Admin-Rechte bekommt.
+        </div>
       </div>
-      <div class="mb-3">
-        <span v-for="(user, index) of users" :key="index">{{ user }}</span>
+      <div class="text-center mt-5">
+        <button class="btn w-75" v-bind:disabled="!ready">Relay erstellen</button>
       </div>
-      <div class="text-center">
-      <button class="btn w-75">Relay erstellen</button></div>
     </div>
     <ErrorNoPermission v-else />
   </div>
 </template>
 
+<style>
+.form-class {
+  max-width: 400px;
+}
+</style>
+
 <script>
 export default {
   data: function () {
-    this.$store.commit("util/userpicker/clear");
     return {
-      users: this.$store.state.util.userpicker.users,
+      user: undefined,
+      name: undefined
     };
+  },
+  computed: {
+    ready: function () {
+      return this.user != undefined && this.name != undefined
+    },
   },
 };
 </script>

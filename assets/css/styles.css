@@ -1,3 +1,16 @@
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #cccccc;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(153, 153, 153);
+    border: none;
+}
+
 button.btn {
     padding: 5px;
     background-color: #1da64a;
