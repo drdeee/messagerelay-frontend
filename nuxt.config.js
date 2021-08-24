@@ -23,6 +23,7 @@ export default {
         '~/assets/css/bootstrap.min.css',
         '~/assets/css/fonts.css',
         '~/assets/css/background.css',
+        '~/assets/css/snackbar.css',
         '~/assets/css/styles.css'
     ],
 

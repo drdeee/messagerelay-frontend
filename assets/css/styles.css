@@ -26,3 +26,7 @@ button.btn:hover {
     background-color: #86cde9;
     color: #f9f7f0;
 }
+
+button.btn:focus {
+    box-shadow: none;
+}
