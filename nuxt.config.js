@@ -1,9 +1,9 @@
-const target = process.env.TARGET === 'STATIC'
+const target = process.env.TARGET ? process.env.TARGET : 'server'
 const base = process.env.BASE ? process.env.BASE : '/'
 export default {
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
     ssr: false,
-    target: target ? 'static' : 'server',
+    target: target,
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: 'MessageRelay',
