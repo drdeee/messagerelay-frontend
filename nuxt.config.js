@@ -1,5 +1,5 @@
 const target = process.env.TARGET === 'STATIC'
-
+const base = process.env.BASE ? process.env.BASE : '/'
 export default {
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
     ssr: false,
@@ -75,6 +75,7 @@ export default {
     },
 
     router: {
+        base: base,
         middleware: ['auth']
     },
     build: {}
