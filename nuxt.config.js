@@ -1,6 +1,6 @@
 const target = process.env.TARGET ? process.env.TARGET : 'server'
 const base = process.env.BASE ? process.env.BASE : '/'
-const config = {
+export default {
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
     ssr: false,
     target: target,
@@ -80,5 +80,3 @@ const config = {
     },
     build: {}
 }
-console.log(config)
-export default config
